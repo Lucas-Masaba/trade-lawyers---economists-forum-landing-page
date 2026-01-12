@@ -260,20 +260,10 @@ const FooterLinksData: footerlinks[] = [
     ],
   },
   {
-    section: 'Programs',
+    section: 'Connect',
     links: [
-      { label: 'Research & Policy', href: '#' },
-      { label: 'Capacity Building', href: '#' },
-      { label: 'SME Support', href: '#' },
-      { label: 'Events & Workshops', href: '#' },
-    ],
-  },
-  {
-    section: 'Information',
-    links: [
-      { label: 'Publications', href: '#' },
-      { label: 'Privacy Policy', href: '#' },
-      { label: 'Terms & Conditions', href: '#' },
+      { label: 'Events & Publications', href: '#EventsPublications' },
+      { label: 'Contact Us', href: '#first-section' },
     ],
   },
 ]

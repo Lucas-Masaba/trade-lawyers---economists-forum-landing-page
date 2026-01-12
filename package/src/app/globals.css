@@ -36,15 +36,24 @@
   --z-index-2: 2;
   --z-index-999: 999;
 
-  --color-primary: #0066ff;
-  --color-purple: #1e013a;
+  /* Logo-based color palette - VERIFIED from trade_logo.png */
+  --color-primary: #143545; /* Dark blue from logo - 35.3% of logo (RGB: 20, 53, 69) */
+  --color-secondary: #636e77; /* Gray-blue from logo - 13.6% of logo (RGB: 99, 110, 119) */
+  --color-accent: #4a7991; /* Medium blue accent from logo (RGB: 74, 121, 145) */
+  --color-accent-light: #e0e4e7; /* Light blue-gray from logo - 2.2% of logo (RGB: 224, 228, 231) */
+  
+  /* Legacy colors updated to match verified logo palette */
+  --color-purple: #143545; /* Updated to match primary dark blue */
   --color-grey: #f4f5f6;
-  --color-border: #dbdbdb;
-  --color-darkmode: #00224a;
-  --color-deep-slate: #02398a;
+  --color-border: #e0e4e7; /* Updated to verified light accent from logo */
+  --color-darkmode: #143545; /* Updated to verified primary dark blue */
+  --color-deep-slate: #4a7991; /* Updated to verified blue accent */
 
-  --text-80: 5rem;
-  --text-65: 4.063rem;
+  /* Typography scales - Mesa Advocates inspired professional sizing */
+  --text-80: 3.5rem;
+  --text-65: 3rem;
+  --text-52: 2.6rem;
+  --text-48: 2.4rem;
 
   --blur-220: 220px;
   --blur-400: 400px;
@@ -73,34 +82,216 @@
     @apply py-20;
   }
 
+  /* Professional serif headings inspired by Mesa Advocates */
   h1 {
-    @apply text-black text-6xl sm:text-80 font-bold sm:leading-24 leading-20;
+    @apply font-[family-name:var(--font-playfair)] text-slate-900 text-4xl sm:text-5xl lg:text-48 font-bold sm:leading-tight leading-tight;
   }
 
   h2 {
-    @apply text-black text-5xl lg:text-65 font-bold;
+    @apply font-[family-name:var(--font-playfair)] text-slate-900 text-3xl sm:text-4xl lg:text-52 font-semibold leading-tight;
   }
 
   h3 {
-    @apply text-black text-4xl lg:text-6xl font-semibold;
+    @apply font-[family-name:var(--font-playfair)] text-slate-900 text-2xl sm:text-3xl lg:text-4xl font-semibold leading-snug;
   }
 
   h4 {
-    @apply text-black text-3xl lg:text-4xl font-semibold;
+    @apply font-[family-name:var(--font-playfair)] text-slate-900 text-xl sm:text-2xl font-semibold leading-snug;
   }
 
   h5 {
-    @apply text-black text-2xl font-semibold;
+    @apply font-[family-name:var(--font-playfair)] text-slate-900 text-lg sm:text-xl font-semibold;
   }
 
   h6 {
-    @apply text-black text-xl;
+    @apply font-[family-name:var(--font-playfair)] text-slate-900 text-base sm:text-lg font-semibold;
+  }
+
+  body {
+    @apply font-[family-name:var(--font-inter)] text-gray-700 text-base leading-relaxed;
+  }
+
+  p {
+    @apply text-gray-700 text-base leading-relaxed;
   }
 }
 
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+}
+
+/* ============================================
+  GLOBAL ANIMATIONS AND TRANSITIONS
+  ============================================ */
+
+/* Smooth transitions for all interactive elements */
+* {
+  @apply transition-colors duration-300;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  @apply transition-all duration-300 ease-out;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Slide Up Animation */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide Down Animation */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide Left Animation */
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slide Right Animation */
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Scale In Animation */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Glow Animation */
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(20, 53, 69, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(20, 53, 69, 0.6);
+  }
+}
+
+/* Shimmer Animation */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Utility classes for animations */
+/* Note: Using Framer Motion for complex animations in components */
+/* Simple utility animations using standard Tailwind */
+
+.card-hover {
+  @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+}
+
+/* Button & Link Hover Effects */
+button:not(:disabled),
+a:not([disabled]):not(.footer-link) {
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: left 0.3s ease-out;
+  }
+
+  &:hover::before {
+    left: 100%;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Input Focus Animations */
+input:focus,
+textarea:focus,
+select:focus {
+  @apply ring-2 ring-[var(--color-primary)] ring-offset-2 outline-none;
+}
+
+/* Card Hover Effect */
+.card-hover {
+  @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
 }
 
 .bg-joinus {
