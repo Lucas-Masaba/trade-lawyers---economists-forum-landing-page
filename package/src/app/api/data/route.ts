@@ -1,12 +1,12 @@
 import { NextResponse } from 'next/server'
 
-import { HeaderItem } from '@/app/types/menu'
-import { aboutdata } from '@/app/types/aboutdata'
-import { workdata } from '@/app/types/workdata'
-import { featureddata } from '@/app/types/featureddata'
-import { testimonials } from '@/app/types/testimonials'
-import { articles } from '@/app/types/articles'
-import { footerlinks } from '@/app/types/footerlinks'
+import { HeaderItem } from '@/types/menu'
+import { aboutdata } from '@/types/aboutdata'
+import { workdata } from '@/types/workdata'
+import { featureddata } from '@/types/featureddata'
+import { testimonials } from '@/types/testimonials'
+import { articles } from '@/types/articles'
+import { footerlinks } from '@/types/footerlinks'
 
 // header nav-links data
 const headerData: HeaderItem[] = [
