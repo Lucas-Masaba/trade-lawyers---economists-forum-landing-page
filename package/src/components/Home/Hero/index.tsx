@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react/dist/iconify.js'
+import { tlefHeroData } from '@/data/tlef-content'
 
 const Hero = () => {
   const leftAnimation = {
@@ -25,14 +26,14 @@ const Hero = () => {
         <div className='grid grid-cols-12 justify-center items-center'>
           <div className='col-span-12 xl:col-span-5 lg:col-span-6 md:col-span-12 sm:col-span-12'>
             <div className='py-2 px-5 bg-primary/15 rounded-full w-fit'>
-              <p className='text-primary text-lg font-bold'>DESIGN AGENCY</p>
+              <p className='text-primary text-lg font-bold'>{tlefHeroData.tagline}</p>
             </div>
-            <h1>
-              Dedicated to bring your ideas to life.
-            </h1>
-            <Link href={'#'}>
+            <p className='text-lg font-medium text-black/70 mt-6 mb-8 text-justify'>
+              {tlefHeroData.subtitle}
+            </p>
+            <Link href={tlefHeroData.ctaLink}>
               <button className='bg-primary text-white text-xl font-semibold py-5 px-12 rounded-full hover:bg-darkmode hover:cursor-pointer mt-10'>
-                Get started
+                {tlefHeroData.cta}
               </button>
             </Link>
           </div>

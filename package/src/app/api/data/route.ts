@@ -10,11 +10,10 @@ import { footerlinks } from '@/types/footerlinks'
 
 // header nav-links data
 const headerData: HeaderItem[] = [
-  { label: 'About Us', href: '#About' },
-  { label: 'Team', href: '#Team' },
-  { label: 'FAQ', href: '#FAQ' },
-  { label: 'Blog', href: '#Blog' },
-  { label: 'Docs', href: '/documentation' },
+  { label: 'About', href: '#impact' },
+  { label: 'Partnership', href: '#partnership' },
+  { label: 'Membership', href: '#membership' },
+  { label: 'Leadership', href: '#Team' },
 ]
 
 // about data
@@ -252,36 +251,29 @@ const ArticlesData: articles[] = [
 // footer links data
 const FooterLinksData: footerlinks[] = [
   {
-    section: 'Menu',
+    section: 'Navigation',
     links: [
-      { label: 'About Us', href: '#About' },
-      { label: 'Team', href: '#Team' },
-      { label: 'FAQ', href: '#FAQ' },
-      { label: 'Blog', href: '#Blog' },
+      { label: 'About TLEF', href: '#impact' },
+      { label: 'Partnership', href: '#partnership' },
+      { label: 'Membership', href: '#membership' },
+      { label: 'Leadership', href: '#Team' },
     ],
   },
   {
-    section: 'Category',
+    section: 'Programs',
     links: [
-      { label: 'Design', href: '/' },
-      { label: 'Mockup', href: '/' },
-      { label: 'View all', href: '/' },
-      { label: 'Log In', href: '/' },
+      { label: 'Research & Policy', href: '#' },
+      { label: 'Capacity Building', href: '#' },
+      { label: 'SME Support', href: '#' },
+      { label: 'Events & Workshops', href: '#' },
     ],
   },
   {
-    section: 'Pages',
+    section: 'Information',
     links: [
-      { label: '404', href: '/' },
-      { label: 'Instructions', href: '/' },
-      { label: 'License', href: '/' },
-    ],
-  },
-  {
-    section: 'Others',
-    links: [
-      { label: 'Styleguide', href: '/' },
-      { label: 'Changelog', href: '/' },
+      { label: 'Publications', href: '#' },
+      { label: 'Privacy Policy', href: '#' },
+      { label: 'Terms & Conditions', href: '#' },
     ],
   },
 ]

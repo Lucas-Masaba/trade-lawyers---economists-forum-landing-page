@@ -1,34 +1,13 @@
 'use client'
-import { useEffect, useState } from 'react'
-import { aboutdata } from '@/types/aboutdata'
-import Link from 'next/link'
+import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { Icon } from '@iconify/react'
-import AboutSkeleton from '../../Skeleton/AboutUs'
+import { tlefPartnershipModelsData } from '@/data/tlef-content'
 
 const Aboutus = () => {
-  // fetch about data
-  const [about, setAbout] = useState<aboutdata[]>([])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch('/api/data')
-        if (!res.ok) throw new Error('Failed to fetch')
-        const data = await res.json()
-        setAbout(data.Aboutdata)
-      } catch (error) {
-        console.error('Error fetching services:', error)
-      } finally {
-        setLoading(false)
-      }
-    }
-    fetchData()
-  }, [])
-
   return (
-    <section id='About' className=' bg-cover bg-center overflow-hidden'>
+    <section id='About' className='bg-cover bg-center overflow-hidden py-20'>
       <div className='container mx-auto max-w-7xl px-4 relative z-1'>
         <div className='p-12 bg-grey rounded-3xl'>
           <Image
@@ -39,43 +18,34 @@ const Aboutus = () => {
             className='absolute bottom-1 -left-20'
           />
           <p className='text-center text-primary text-lg tracking-widest uppercase mt-10'>
-            about us
+            partnership models
           </p>
-          <h2 className='text-center pb-12'>Know more about us.</h2>
-          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 mt-10'>
-            {loading
-              ? Array.from({ length: 3 }).map((_, index) => (
-                  <AboutSkeleton key={index} />
-                ))
-              : about.map((item, i) => (
-                  <div
-                    key={i}
-                    className='hover:bg-darkmode bg-white rounded-3xl p-8 shadow-xl group'>
-                    <h5 className='group-hover:text-white mb-5'>
-                      {item.heading}
-                    </h5>
-                    <Image
-                      src={item.imgSrc}
-                      alt={item.imgSrc}
-                      width={100}
-                      height={100}
-                      className='mb-5'
-                    />
-                    <p className='text-lg font-normal text-black group-hover:text-white mb-5'>
-                      {item.paragraph}
-                    </p>
-                    <Link
-                      href='#'
-                      className='text-18 font-semibold text-primary hover-underline flex items-center'>
-                      {item.link}
-                      <Icon
-                        icon='tabler:chevron-right'
-                        width='20'
-                        height='20'
-                      />
-                    </Link>
-                  </div>
-                ))}
+          <h2 className='text-center pb-12'>{tlefPartnershipModelsData.heading}</h2>
+          
+          <div className='max-w-4xl mx-auto mb-12'>
+            <p className='text-lg font-medium text-black/80 text-justify mb-8'>
+              {tlefPartnershipModelsData.intro}
+            </p>
+          </div>
+
+          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 mt-10'>
+            {tlefPartnershipModelsData.models.map((model, index) => (
+              <div
+                key={index}
+                className='hover:bg-darkmode bg-white rounded-3xl p-8 shadow-xl group transition-all'>
+                <div className='flex items-start gap-4'>
+                  <Icon
+                    icon='tabler:circle-check'
+                    width='24'
+                    height='24'
+                    className='text-primary group-hover:text-white shrink-0 mt-1'
+                  />
+                  <p className='text-lg font-medium text-black group-hover:text-white text-justify'>
+                    {model}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

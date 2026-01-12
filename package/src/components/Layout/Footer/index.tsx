@@ -31,11 +31,17 @@ const footer = () => {
           {/* COLUMN-1 */}
           <div className='col-span-4'>
             <h4 className='text-white text-3xl leading-9 mb-4 lg:mb-20'>
-              Desgy Solutions
+              TLEF
             </h4>
-            <div className='flex items-center gap-4'>
+            <p className='text-white/80 text-lg mb-6'>
+              Trade Lawyers and Economists Forum
+            </p>
+            <p className='text-white/80 mb-4'>
+              Headquartered in Kampala, Uganda
+            </p>
+            <div className='flex items-center gap-4 mt-6'>
               <div className='footer-icons'>
-                <Link href='https://facebook.com'>
+                <Link href='https://facebook.com' target='_blank'>
                   <Image
                     src={'/images/footer/vec.svg'}
                     alt='facebook'
@@ -45,7 +51,7 @@ const footer = () => {
                 </Link>
               </div>
               <div className='footer-icons'>
-                <Link href='https://twitter.com'>
+                <Link href='https://twitter.com' target='_blank'>
                   <Image
                     src={'/images/footer/twitter.svg'}
                     alt='twitter'
@@ -55,7 +61,7 @@ const footer = () => {
                 </Link>
               </div>
               <div className='footer-icons'>
-                <Link href='https://instagram.com'>
+                <Link href='https://instagram.com' target='_blank'>
                   <Image
                     src={'/images/footer/instagram.svg'}
                     alt='instagram'
@@ -93,14 +99,7 @@ const footer = () => {
           <div className='mt-4 grid grid-cols-1 gap-y-10 gap-x-16 sm:grid-cols-2 xl:gap-x-8'>
             <div>
               <p className='text-center md:text-start text-white text-lg'>
-                @2025 - All Rights Reserved by{' '}
-                <Link
-                  href='https://getnextjstemplates.com/'
-                  target='_blank'
-                  className='hover:text-white/60 hover:underline'>
-                  {' '}
-                  GetNextJsTemplates.com
-                </Link>
+                @2025 - Trade Lawyers and Economists Forum (TLEF). All Rights Reserved.
               </p>
             </div>
             <div className='flex justify-center md:justify-end'>
