@@ -8,11 +8,15 @@ const Membership = () => {
   const [showCategoriesModal, setShowCategoriesModal] = useState(false)
   const categoriesToShow = 4
 
-  // Icon mappings for why join points
-  const pointIcons: { [key: number]: string } = {
-    0: 'mdi:network',
-    1: 'mdi:brain',
+  // Title-based icon mapping keeps icon meaning aligned with each section's message.
+  const pointIcons: { [key: string]: string } = {
+    'professional growth & learning': 'mdi:school-outline',
+    'networking & collaboration': 'mdi:account-group-outline',
+    'research & knowledge sharing': 'mdi:file-document-edit-outline',
+    'visibility & professional contribution': 'mdi:bullhorn-outline',
   }
+
+  const getPointIcon = (title: string) => pointIcons[title.toLowerCase()] || 'mdi:circle-outline'
   return (
     <section id='membership' className='py-20 bg-white'>
       <div className='container mx-auto max-w-7xl px-4'>
@@ -47,7 +51,7 @@ const Membership = () => {
                 >
                   <div className='flex gap-4 items-start mb-6'>
                     <motion.div whileHover={{ scale: 1.15, rotate: 10 }}>
-                      <Icon icon={pointIcons[index] || 'mdi:circle'} className='w-8 h-8 text-[var(--color-primary)] flex-shrink-0 transition-transform duration-300' />
+                      <Icon icon={getPointIcon(point.title)} className='w-8 h-8 text-[var(--color-primary)] flex-shrink-0 transition-transform duration-300' />
                     </motion.div>
                     <h5 className='text-xl font-bold text-darkmode'>{point.title}</h5>
                   </div>

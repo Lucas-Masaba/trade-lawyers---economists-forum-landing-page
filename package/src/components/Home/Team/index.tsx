@@ -215,11 +215,15 @@ const Team = () => {
                   </div>
 
                   <div className='space-y-4 text-white mt-4'>
-                    {selectedMember.bio.split('\n\n').map((paragraph, index) => (
-                      <p key={index} className='text-sm leading-relaxed text-justify text-white'>
-                        {paragraph}
-                      </p>
-                    ))}
+                    {selectedMember.bio && selectedMember.bio.trim() ? (
+                      selectedMember.bio.split('\n\n').map((paragraph, index) => (
+                        <p key={index} className='text-sm leading-relaxed text-justify text-white'>
+                          {paragraph}
+                        </p>
+                      ))
+                    ) : (
+                      <p className='text-sm italic text-white/70'>Profile information coming soon.</p>
+                    )}
                   </div>
 
                   {selectedMember.expertise && selectedMember.expertise.length > 0 && (

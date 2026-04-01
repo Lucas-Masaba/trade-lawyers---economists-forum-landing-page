@@ -83,8 +83,17 @@ export const tlefTeamData = [
     name: 'Ivan Ojakol',
     position: 'Secretary',
     imgSrc: '/images/profile-pics/ojakol.png',
-    bio: 'Profile content unavailable.',
-    expertise: [],
+    bio: 'IVAN OJAKOL PROFILE\n\nIvan is a Partner at Matrix Advocates and a Trade lawyer.\n\nIvan regularly advises and represents clients on issues across the whole trade value chain including their tax issues before the Tax Appeals Tribunal and litigation at the East African Court of Justice. He has also developed expertise on the Africa Continental Free Trade Area.\n\nIvan has recently done some considerable work on digital trade for a leading international organization and is currently conducting a consultancy on the interaction of data protection and regional integration.\n\nHe has trained regularly conducts trainings for stakeholders and is a sought after speaker on matters of International Trade law\n\nIvan is a rising Star in the area and has been recognized at the Africa Legal Awards, 2020.\n\nIvan served as a Lecturer of International Trade law for 5 years at the International University of East Africa (IUEA).\nIvan has an MSc in International Trade Law and Policy from Lund University and has attended many courses and trainings on Trade Law and Policy from leading institutions like Tralac. He is also currently pursuing a Masters Degree on Trade Finance from ESAMI-trapca.',
+    expertise: [
+      'International Trade Law',
+      'Trade Tax Disputes',
+      'Tax Appeals Tribunal Practice',
+      'East African Court of Justice Litigation',
+      'AfCFTA',
+      'Digital Trade',
+      'Data Protection and Regional Integration',
+      'Trade Law Training',
+    ],
   },
   {
     id: 'dr-hilda-thopacu',
@@ -115,5 +124,13 @@ export const tlefTeamData = [
       'Econometrics',
       'AfCFTA & SEZs',
     ],
+  },
+  {
+    id: 'agatha-ninsiima',
+    name: 'Agatha Ninsiima',
+    position: 'Member',
+    imgSrc: '/images/profile-pics/agatha.png',
+    bio: '',
+    expertise: [],
   },
 ]

@@ -6,19 +6,23 @@ import { motion } from 'framer-motion'
 import { tlefPartnershipData, tlefPrioritiesData, tlefValuePropositionData } from '@/data/tlef-content'
 
 const Partnership = () => {
-  // Icon mappings for priorities and values
-  const priorityIcons: { [key: number]: string } = {
-    0: 'mdi:target',
-    1: 'mdi:briefcase',
-    2: 'mdi:chart-line',
+  const priorityIcons: { [key: string]: string } = {
+    'research & policy development': 'mdi:file-search-outline',
+    'capacity building & training': 'mdi:school-outline',
+    'institutional strengthening': 'mdi:domain',
+    'sme trade support programs': 'mdi:storefront-outline',
+    'inclusive & sustainable trade': 'mdi:leaf',
   }
 
-  const valueIcons: { [key: number]: string } = {
-    0: 'mdi:star',
-    1: 'mdi:shield-check',
-    2: 'mdi:lightbulb',
-    3: 'mdi:network',
+  const valueIcons: { [key: string]: string } = {
+    'measurable impact': 'mdi:chart-line',
+    'regional reach': 'mdi:map-marker-radius-outline',
+    'technical excellence': 'mdi:cog-outline',
+    'collaborative approach': 'mdi:handshake-outline',
   }
+
+  const getPriorityIcon = (title: string) => priorityIcons[title.toLowerCase()] || 'mdi:circle-outline'
+  const getValueIcon = (title: string) => valueIcons[title.toLowerCase()] || 'mdi:circle-outline'
   return (
     <>
       {/* Why Partner Section */}
@@ -179,7 +183,7 @@ const Partnership = () => {
                     transition={{ duration: 0.3 }}
                   >
                     <div className='p-4 bg-white/20 rounded-2xl w-fit group-hover:bg-white/30 transition-colors'>
-                      <Icon icon={priorityIcons[index] || 'mdi:circle'} className='w-10 h-10 text-white flex-shrink-0' />
+                      <Icon icon={getPriorityIcon(priority.title)} className='w-10 h-10 text-white flex-shrink-0' />
                     </div>
                   </motion.div>
                   
@@ -253,7 +257,7 @@ const Partnership = () => {
                       whileHover={{ scale: 1.15, rotate: -5 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <Icon icon={valueIcons[index] || 'mdi:circle'} className='w-8 h-8 text-white flex-shrink-0' />
+                      <Icon icon={getValueIcon(value.title)} className='w-8 h-8 text-white flex-shrink-0' />
                     </motion.div>
                     <motion.h5 
                       initial={{ opacity: 0, x: -10 }}
