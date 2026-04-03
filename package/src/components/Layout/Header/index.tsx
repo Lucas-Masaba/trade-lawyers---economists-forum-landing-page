@@ -1,8 +1,6 @@
 'use client'
 import { Key, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { useTheme } from 'next-themes'
 import { HeaderItem } from '@/types/menu'
 import Logo from './Logo'
 import HeaderLink from './Navigation/HeaderLink'
@@ -12,24 +10,23 @@ const Header: React.FC = () => {
   const [navbarOpen, setNavbarOpen] = useState(false)
   const [sticky, setSticky] = useState(false)
 
-  const navbarRef = useRef<HTMLDivElement>(null)
   const mobileMenuRef = useRef<HTMLDivElement>(null)
 
   const handleScroll = () => {
     setSticky(window.scrollY >= 80)
   }
 
-  const handleClickOutside = (event: MouseEvent) => {
-    if (
-      mobileMenuRef.current &&
-      !mobileMenuRef.current.contains(event.target as Node) &&
-      navbarOpen
-    ) {
-      setNavbarOpen(false)
-    }
-  }
-
   useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(event.target as Node) &&
+        navbarOpen
+      ) {
+        setNavbarOpen(false)
+      }
+    }
+
     window.addEventListener('scroll', handleScroll)
     document.addEventListener('mousedown', handleClickOutside)
     return () => {
@@ -67,14 +64,14 @@ const Header: React.FC = () => {
   return (
     <header
       className={`fixed top-0 z-40 w-full transition-all duration-300 border-b ${
-        sticky
-          ? 'shadow-lg bg-[var(--color-primary)]/90 backdrop-blur-lg border-white/10'
-          : 'bg-[var(--color-primary)]/100 backdrop-blur-lg shadow-none border-white/10'
+          sticky
+          ? 'shadow-lg bg-(--color-primary)/90 backdrop-blur-lg border-white/10'
+          : 'bg-(--color-primary)/100 backdrop-blur-lg shadow-none border-white/10'
       }`}>
       <div className='lg:py-0 py-1'>
         <div className='container mx-auto max-w-(--breakpoint-xl) flex items-center justify-between px-4 text-white'>
           <div
-            className={`pr-10 lg:border-r border-[var(--color-primary)]/10 duration-300 transition-all transform ${
+            className={`pr-10 lg:border-r border-(--color-primary)/10 duration-300 transition-all transform ${
               sticky ? 'py-2 scale-95' : 'py-3'
             }`}>
             <div className='bg-white px-2 py-1 rounded-sm hover:shadow-lg transition-shadow duration-300'>
@@ -107,7 +104,7 @@ const Header: React.FC = () => {
           ref={mobileMenuRef}
           className={`lg:hidden fixed top-0 right-0 h-screen w-full shadow-lg transform transition-all duration-500 max-w-xs ${
             navbarOpen ? 'translate-x-0' : 'translate-x-full'
-          } z-50 bg-[var(--color-primary)]`}>
+          } z-50 bg-(--color-primary)`}>
           <div className='flex items-center justify-between p-4 bg-white'>
             <h2 className='text-lg font-bold'>
               <Logo />

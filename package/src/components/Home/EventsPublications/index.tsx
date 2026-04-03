@@ -16,7 +16,7 @@ const EventsPublications = () => {
   return (
     <>
       {/* Events Section - Redesigned */}
-      <section className='relative overflow-hidden py-20 bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-primary)]/80'>
+      <section className='relative overflow-hidden py-20 bg-linear-to-br from-(--color-primary) to-(--color-primary)/80'>
         <div className='container mx-auto max-w-7xl px-4 relative z-10'>
           <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'>
             {/* Content on the left */}
@@ -31,7 +31,7 @@ const EventsPublications = () => {
                 {tlefEventsData.events.map((event, index) => (
                   <div key={index} className='bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all group'>
                     <div className='flex gap-4 items-start'>
-                      <Icon icon={eventIcons[index] || 'mdi:calendar'} className='w-8 h-8 text-white flex-shrink-0 mt-1' />
+                      <Icon icon={eventIcons[index] || 'mdi:calendar'} className='w-8 h-8 text-white shrink-0 mt-1' />
                       <div>
                         <h5 className='text-lg font-bold text-white mb-2'>{event.title}</h5>
                         <p className='text-white/90 text-justify text-sm'>{event.description}</p>
@@ -55,7 +55,7 @@ const EventsPublications = () => {
                 {/* Overlay badge */}
                 <div className='absolute -bottom-6 -left-6 bg-white rounded-2xl p-6 shadow-xl'>
                   <div className=''>
-                    <Icon icon='mdi:calendar-star' className='w-10 h-10 text-[var(--color-primary)]' />
+                    <Icon icon='mdi:calendar-star' className='w-10 h-10 text-(--color-primary)' />
                     {/* <div>
                       <p className='text-sm text-black/60'>Join Our</p>
                       <p className='text-xl font-bold text-[var(--color-primary)]'>Events</p>
@@ -84,7 +84,7 @@ const EventsPublications = () => {
             {/* <p className='text-[var(--color-primary)] text-lg tracking-widest uppercase mb-4'>
               Knowledge Products
             </p> */}
-            <h2 className='text-[var(--color-primary)] pb-4'>{tlefPublicationsData.heading}</h2>
+            <h2 className='text-(--color-primary) pb-4'>{tlefPublicationsData.heading}</h2>
             <p className='text-lg font-medium text-black/80 max-w-3xl mx-auto text-justify'>
               {tlefPublicationsData.intro}
             </p>
@@ -92,13 +92,13 @@ const EventsPublications = () => {
 
           <div className='grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto'>
             {tlefPublicationsData.publications.map((publication, index) => (
-              <div key={index} className='group relative bg-gradient-to-br from-[var(--color-primary)]/5 to-white border-2 border-[var(--color-primary)]/20 rounded-2xl p-6 hover:border-[var(--color-primary)] hover:shadow-xl transition-all'>
+              <div key={index} className='group relative bg-linear-to-br from-(--color-primary)/5 to-white border-2 border-(--color-primary)/20 rounded-2xl p-6 hover:border-(--color-primary) hover:shadow-xl transition-all'>
                 <div className='flex gap-4 items-start'>
-                  <Icon icon='mdi:file-document' className='w-8 h-8 text-[var(--color-primary)] flex-shrink-0 mt-1 group-hover:scale-110 transition-transform' />
+                  <Icon icon='mdi:file-document' className='w-8 h-8 text-(--color-primary) shrink-0 mt-1 group-hover:scale-110 transition-transform' />
                   <span className='text-base text-black/80 text-justify'>{publication}</span>
                 </div>
                 {/* Decorative corner */}
-                <div className='absolute top-0 right-0 w-12 h-12 bg-[var(--color-primary)]/10 rounded-bl-3xl'></div>
+                <div className='absolute top-0 right-0 w-12 h-12 bg-(--color-primary)/10 rounded-bl-3xl'></div>
               </div>
             ))}
           </div>

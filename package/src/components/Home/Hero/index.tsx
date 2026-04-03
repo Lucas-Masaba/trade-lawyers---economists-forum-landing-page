@@ -38,7 +38,7 @@ const Hero = () => {
           sizes='100vw'
         />
         {/* Layer Mask Overlay */}
-        <div className='absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-[var(--color-primary)]/20'></div>
+        <div className='absolute inset-0 bg-linear-to-br from-white/40 via-transparent to-(--color-primary)/20'></div>
       </motion.div>
 
       {/* Content */}
@@ -81,7 +81,7 @@ const Hero = () => {
               <motion.button 
                 whileHover={{ scale: 1.05, boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.3)' }}
                 whileTap={{ scale: 0.95 }}
-                className='bg-[var(--color-primary)] text-white text-lg md:text-xl font-semibold py-4 md:py-5 px-8 md:px-12 rounded-full hover:bg-[var(--color-primary)]/90 shadow-xl mt-10 inline-flex items-center gap-3 transition-all duration-300'
+                className='bg-(--color-primary) text-white text-lg md:text-xl font-semibold py-4 md:py-5 px-8 md:px-12 rounded-full hover:bg-(--color-primary)/90 shadow-xl mt-10 inline-flex items-center gap-3 transition-all duration-300'
               >
                 {tlefHeroData.cta}
               </motion.button>

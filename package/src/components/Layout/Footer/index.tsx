@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { footerlinks } from '@/types/footerlinks'
 
-const footer = () => {
+const Footer = () => {
   // fetch data
 
   const [footerlinks, setFooterLinks] = useState<footerlinks[]>([])
@@ -26,7 +26,7 @@ const footer = () => {
   }, [])
 
   return (
-    <div className='relative bg-[var(--color-primary)] overflow-hidden' id='first-section'>
+    <div className='relative bg-(--color-primary) overflow-hidden' id='first-section'>
       {/* Background Image */}
       <div className='absolute inset-0 z-0'>
         <Image
@@ -156,4 +156,4 @@ const footer = () => {
   )
 }
 
-export default footer
+export default Footer

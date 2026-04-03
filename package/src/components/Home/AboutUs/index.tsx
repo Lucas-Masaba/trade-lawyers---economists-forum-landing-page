@@ -36,11 +36,11 @@ const Aboutus = () => {
           style={{ position: 'absolute' }}
         />
         {/* Layer Mask Overlay */}
-        <div className='absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent'></div>
+        <div className='absolute inset-0 bg-linear-to-br from-white/30 via-transparent to-transparent'></div>
       </motion.div>
 
       <div className='container mx-auto max-w-7xl px-4 relative z-10'>
-        <div className='p-8 md:p-12 bg-[var(--color-primary)] rounded-3xl'>
+        <div className='p-8 md:p-12 bg-(--color-primary) rounded-3xl'>
           <Image
             src='/images/aboutus/dots.svg'
             width={100}
@@ -68,7 +68,7 @@ const Aboutus = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: false, amount: 0.3 }}
                 whileHover={{ scale: 1.05, translateY: -8 }}
-                className='hover:bg-white bg-[var(--color-primary)]/80 border border-white/20 rounded-3xl p-8 shadow-xl group transition-all duration-300 cursor-pointer'
+                className='hover:bg-white bg-(--color-primary)/80 border border-white/20 rounded-3xl p-8 shadow-xl group transition-all duration-300 cursor-pointer'
               >
                 <div className='flex items-start gap-4'>
                   <motion.div
@@ -79,10 +79,10 @@ const Aboutus = () => {
                       icon={modelIcons[index] || 'mdi:circle'}
                       width='24'
                       height='24'
-                      className='text-white group-hover:text-[var(--color-primary)] shrink-0 mt-1 transition-colors duration-300'
+                      className='text-white group-hover:text-(--color-primary) shrink-0 mt-1 transition-colors duration-300'
                     />
                   </motion.div>
-                  <p className='text-base font-medium text-white group-hover:text-[var(--color-primary)] text-justify transition-colors duration-300'>
+                  <p className='text-base font-medium text-white group-hover:text-(--color-primary) text-justify transition-colors duration-300'>
                     {model}
                   </p>
                 </div>
