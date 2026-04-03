@@ -28,6 +28,13 @@ export type TeamMember = {
   bio: string
   imgSrc: string
   expertise?: string[]
+  socials?: TeamSocialLink[]
+}
+
+export type TeamSocialLink = {
+  label: string
+  href: string
+  icon: string
 }
 
 export type Event = {

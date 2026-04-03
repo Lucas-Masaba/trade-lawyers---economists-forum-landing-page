@@ -1,12 +1,14 @@
 // TLEF Team Members Data
 
-export const tlefTeamData = [
+import type { TeamMember } from '@/types/tlefdata'
+
+export const tlefTeamData: TeamMember[] = [
   {
     id: 'mable-kisaka',
     name: 'Mable Kisaka',
     position: 'Chairperson',
     imgSrc: '/images/profile-pics/mable.png',
-    bio: 'Mable Kisaka is the Managing Partner and Team Leader, providing strategic leadership across international trade, investment, corporate, and policy advisory work. She is a seasoned trade and legal expert with over a decade of experience advising governments, regional institutions, development partners, and private-sector actors on frameworks that promote sustainable, inclusive, and competitive economic growth across Africa.\n\nShe holds a Master of Laws (LL.M) in International Business and Economic Law from Georgetown University Law Center and a Bachelor of Laws (LLB) from Makerere University. An Advocate of the Ugandan Bar, Mable is dual-trained in international trade and investment law, arbitration, and corporate governance, with a strong focus on regional and global trade regimes.\n\nMable serves as Chairperson of the East Africa Law Society International Trade and Regional Integration Committee, where she leads regional thought leadership on trade, investment, digital economy regulation, competition law, and dispute resolution. She oversees the development of policy briefs and position papers, convenes high-level stakeholder dialogues, and supports EAC Partner States in aligning national trade laws with regional and international commitments.\n\nShe was appointed as a Trade Expert on major national and regional policy assignments, including the review and update of Uganda\'s National Trade Policy, Trade Policy Implementation and Development Plan, and National Export Development Strategy (NEDS) under TradeMark Africa. Mable has also led and contributed to regional advisory work for COMESA, including a landmark study across all 21 Member States on intellectual property rights infringement and illicit trade, which informed regional enforcement and reform initiatives.\n\nHer broader advisory experience includes assignments with the World Bank on business readiness, investment climate reform, gender and trade, and access to justice. As Managing Partner, she leads multidisciplinary teams delivering corporate, commercial, trade, and investment advisory services, advising multinationals and SMEs on market entry, regulatory compliance, cross-border transactions, and investment structuring. She is a Certified Trainer with the International Trade Centre (ITC) and Afreximbank, having trained over 100 firms on AfCFTA opportunities and export competitiveness.\n\nMable is also experienced in commercial litigation, arbitration, mediation, and negotiation, and is a Chartered and Certified Mediator. She is widely recognized for integrating law, policy, sustainability, and economic strategy, with a strong commitment to empowering SMEs, strengthening institutions, advancing ESG-aligned trade models, and building trade frameworks that deliver meaningful development impact across Africa. Beyond her professional work, she is a mentor, speaker, and advocate for women\'s leadership in trade and law, and remains actively engaged in regional and global policy conversations shaping Africa\'s economic future.',
+    bio: 'Mable Kisaka is the Managing Partner and Team Leader at Handel Advocates, providing strategic leadership across international trade, investment, corporate, and policy advisory work. She is a seasoned trade and legal expert with over a decade of experience advising governments, regional institutions, development partners, and private-sector actors on frameworks that promote sustainable, inclusive, and competitive economic growth across Africa.\n\nShe holds a Master of Laws (LL.M) in International Business and Economic Law from Georgetown University Law Center and a Bachelor of Laws (LLB) from Makerere University. An Advocate of the Ugandan Bar, Mable is dual-trained in international trade and investment law, arbitration, and corporate governance, with a strong focus on regional and global trade regimes.\n\nMable serves as Chairperson of the East Africa Law Society International Trade and Regional Integration Committee, where she leads regional thought leadership on trade, investment, digital economy regulation, competition law, and dispute resolution. She oversees the development of policy briefs and position papers, convenes high-level stakeholder dialogues, and supports EAC Partner States in aligning national trade laws with regional and international commitments.\n\nShe was appointed as a Trade Expert on major national and regional policy assignments, including the review and update of Uganda\'s National Trade Policy, Trade Policy Implementation and Development Plan, and National Export Development Strategy (NEDS) under TradeMark Africa. Mable has also led and contributed to regional advisory work for COMESA, including a landmark study across all 21 Member States on intellectual property rights infringement and illicit trade, which informed regional enforcement and reform initiatives.\n\nHer broader advisory experience includes assignments with the World Bank on business readiness, investment climate reform, gender and trade, and access to justice. As Managing Partner, she leads multidisciplinary teams delivering corporate, commercial, trade, and investment advisory services, advising multinationals and SMEs on market entry, regulatory compliance, cross-border transactions, and investment structuring. She is a Certified Trainer with the International Trade Centre (ITC) and Afreximbank, having trained over 100 firms on AfCFTA opportunities and export competitiveness.\n\nMable is also experienced in commercial litigation, arbitration, mediation, and negotiation, and is a Chartered and Certified Mediator. She is widely recognized for integrating law, policy, sustainability, and economic strategy, with a strong commitment to empowering SMEs, strengthening institutions, advancing ESG-aligned trade models, and building trade frameworks that deliver meaningful development impact across Africa. Beyond her professional work, she is a mentor, speaker, and advocate for women\'s leadership in trade and law, and remains actively engaged in regional and global policy conversations shaping Africa\'s economic future.',
     expertise: [
       'International Trade Law',
       'Investment Law',
@@ -14,6 +16,18 @@ export const tlefTeamData = [
       'Regional Integration',
       'Gender and Trade',
       'SME Support',
+    ],
+    socials: [
+      {
+        label: 'X',
+        href: 'https://x.com/MableKisaka',
+        icon: 'ri:twitter-x-fill',
+      },
+      {
+        label: 'LinkedIn',
+        href: 'https://ug.linkedin.com/in/mablekisaka',
+        icon: 'mdi:linkedin',
+      },
     ],
   },
   {
@@ -31,6 +45,17 @@ export const tlefTeamData = [
       'Regional Integration Studies',
       'Trade and Policy Research',
     ],
+    socials: [      {
+        label: 'X',
+        href: 'https://x.com/sebijjo',
+        icon: 'ri:twitter-x-fill',
+      },
+      {
+        label: 'LinkedIn',
+        href: 'https://www.linkedin.com/in/emmanuel-sebijjo-ssemmanda-65140821/',
+        icon: 'mdi:linkedin',
+      },
+],
   },
   {
     id: 'anthea-paelo',
@@ -46,6 +71,12 @@ export const tlefTeamData = [
       'Gender-Responsive Policy',
       'Financial Inclusion',
     ],
+    socials: [
+      {
+        label: 'LinkedIn',
+        href: 'https://www.linkedin.com/in/anthea-paelo/',
+        icon: 'mdi:linkedin',
+      },],
   },
   {
     id: 'lastone-gulume',
@@ -61,6 +92,16 @@ export const tlefTeamData = [
       'Regional Trade Frameworks',
       'Contract Drafting',
     ],
+    socials: [{
+        label: 'X',
+        href: 'https://x.com/LastoneGulumeB',
+        icon: 'ri:twitter-x-fill',
+      },
+      {
+        label: 'LinkedIn',
+        href: 'https://www.linkedin.com/in/lastone-gulume-balyainho-5b206b6b/',
+        icon: 'mdi:linkedin',
+      },],
   },
   {
     id: 'phionah-namuliira',
@@ -76,6 +117,7 @@ export const tlefTeamData = [
       'Public Policy',
       'SME Finance',
     ],
+    socials: [],
   },
   // Additional members from proposed leadership image
   {
@@ -94,6 +136,13 @@ export const tlefTeamData = [
       'Data Protection and Regional Integration',
       'Trade Law Training',
     ],
+    socials: [
+      {
+        label: 'LinkedIn',
+        href: 'https://www.linkedin.com/in/ivan-ojakol-mciarb-93906893/',
+        icon: 'mdi:linkedin',
+      },
+    ],
   },
   {
     id: 'dr-hilda-thopacu',
@@ -110,6 +159,13 @@ export const tlefTeamData = [
       'Trade Policy Review',
       'Legal Analysis',
     ],
+    socials: [
+      {
+        label: 'LinkedIn',
+        href: 'https://www.linkedin.com/in/dr-hilda-t-b79112324/',
+        icon: 'mdi:linkedin',
+      },
+    ],
   },
   {
     id: 'richard-sebaggala',
@@ -124,6 +180,13 @@ export const tlefTeamData = [
       'Econometrics',
       'AfCFTA & SEZs',
     ],
+    socials: [
+      {
+        label: 'LinkedIn',
+        href: 'https://ke.linkedin.com/in/sebaggala-richard-91141054',
+        icon: 'mdi:linkedin',
+      },
+    ],
   },
   {
     id: 'agatha-ninsiima',
@@ -132,5 +195,17 @@ export const tlefTeamData = [
     imgSrc: '/images/profile-pics/agatha.png',
     bio: '',
     expertise: [],
+    socials: [
+      {
+        label: 'X',
+        href: 'https://x.com/ninsagatha',
+        icon: 'ri:twitter-x-fill',
+      },
+      {
+        label: 'LinkedIn',
+        href: 'https://www.linkedin.com/in/agatha-ninsiima-40734737/',
+        icon: 'mdi:linkedin',
+      },
+    ],
   },
 ]

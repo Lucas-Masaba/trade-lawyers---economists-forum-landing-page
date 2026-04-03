@@ -10,17 +10,17 @@ const Team = () => {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null)
 
   return (
-    <section id='Team' className='relative overflow-hidden py-20 bg-gradient-to-br from-white via-[var(--color-primary)]/5 to-white'>
+    <section id='Team' className='relative overflow-hidden py-20 bg-linear-to-br from-white via-(--color-primary)/5 to-white'>
       {/* Background decoration */}
-      <div className='absolute top-0 right-0 w-96 h-96 bg-[var(--color-primary)]/5 rounded-full blur-3xl'></div>
-      <div className='absolute bottom-0 left-0 w-96 h-96 bg-[var(--color-primary)]/5 rounded-full blur-3xl'></div>
+      <div className='absolute top-0 right-0 w-96 h-96 bg-(--color-primary)/5 rounded-full blur-3xl'></div>
+      <div className='absolute bottom-0 left-0 w-96 h-96 bg-(--color-primary)/5 rounded-full blur-3xl'></div>
 
       <div className='container mx-auto max-w-7xl px-4 relative z-10'>
         {/* <p className='text-center text-primary text-lg tracking-widest uppercase'>
           leadership
         </p> */}
         <div className='text-center mb-16'>
-          <h2 className='text-[var(--color-primary)] max-w-5xl mx-auto mb-4'>
+          <h2 className='text-(--color-primary) max-w-5xl mx-auto mb-4'>
             Team
           </h2>
           {/* <p className='text-black/60 max-w-2xl mx-auto'>
@@ -44,7 +44,7 @@ const Team = () => {
               onClick={() => setSelectedMember(member)}
             >
               <motion.div 
-                className='relative overflow-hidden rounded-3xl mb-4 aspect-[3/4] bg-gradient-to-br from-[var(--color-primary)]/10 to-[var(--color-primary)]/5 border-2 border-transparent group-hover:border-[var(--color-primary)] transition-all shadow-lg group-hover:shadow-2xl'
+                className='relative overflow-hidden rounded-3xl mb-4 aspect-3/4 bg-linear-to-br from-(--color-primary)/10 to-(--color-primary)/5 border-2 border-transparent group-hover:border-(--color-primary) transition-all shadow-lg group-hover:shadow-2xl'
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
@@ -59,7 +59,7 @@ const Team = () => {
                   initial={{ opacity: 0 }}
                   whileHover={{ opacity: 1 }}
                   transition={{ duration: 0.3 }}
-                  className='absolute inset-0 bg-gradient-to-t from-[var(--color-primary)] via-[var(--color-primary)]/50 to-transparent'
+                  className='absolute inset-0 bg-linear-to-t from-(--color-primary) via-(--color-primary)/50 to-transparent'
                 >
                   <div className='absolute bottom-4 left-4 right-4'>
                     <Icon icon='mdi:eye' className='w-8 h-8 text-white mx-auto animate-bounce' />
@@ -74,30 +74,31 @@ const Team = () => {
                 transition={{ duration: 0.6, delay: idx * 0.1 + 0.2 }}
                 viewport={{ once: false }}
               >
-                <h5 className='text-darkmode font-bold group-hover:text-[var(--color-primary)] transition-colors duration-300'>{member.name}</h5>
-                <p className='text-[var(--color-primary)] text-sm font-medium mt-1'>{member.position}</p>
-                <motion.div 
-                  className='flex items-center justify-center gap-2 mt-3'
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ duration: 0.6, delay: idx * 0.1 + 0.3 }}
-                  viewport={{ once: false }}
-                >
-                  <motion.a 
-                    href='/' 
-                    className='inline-flex items-center justify-center w-8 h-8 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] hover:bg-[var(--color-primary)]/20 transition-colors'
-                    whileHover={{ scale: 1.2, rotate: 5 }}
+                <h5 className='text-darkmode font-bold group-hover:text-(--color-primary) transition-colors duration-300'>{member.name}</h5>
+                <p className='text-(--color-primary) text-sm font-medium mt-1'>{member.position}</p>
+                {member.socials && member.socials.length > 0 && (
+                  <motion.div 
+                    className='flex items-center justify-center gap-2 mt-3'
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.6, delay: idx * 0.1 + 0.3 }}
+                    viewport={{ once: false }}
                   >
-                    <Icon icon='mdi:linkedin' className='w-4 h-4' />
-                  </motion.a>
-                  <motion.a 
-                    href='/' 
-                    className='inline-flex items-center justify-center w-8 h-8 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] hover:bg-[var(--color-primary)]/20 transition-colors'
-                    whileHover={{ scale: 1.2, rotate: -5 }}
-                  >
-                    <Icon icon='mdi:twitter' className='w-4 h-4' />
-                  </motion.a>
-                </motion.div>
+                    {member.socials.map((social, socialIdx) => (
+                      <motion.a 
+                        key={`${member.id}-${social.label}`}
+                        href={social.href}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        aria-label={social.label}
+                        className='inline-flex items-center justify-center w-8 h-8 rounded-full bg-(--color-primary)/10 text-(--color-primary) hover:bg-(--color-primary)/20 transition-colors'
+                        whileHover={{ scale: 1.2, rotate: socialIdx % 2 === 0 ? 5 : -5 }}
+                      >
+                        <Icon icon={social.icon} className='w-4 h-4' />
+                      </motion.a>
+                    ))}
+                  </motion.div>
+                )}
               </motion.div>
             </motion.div>
           ))}
@@ -109,7 +110,7 @@ const Team = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: false, amount: 0.3 }}
-          className='mt-20 bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-primary)]/80 rounded-3xl p-6 md:p-12 shadow-2xl relative overflow-hidden hover:shadow-3xl transition-all duration-300'
+          className='mt-20 bg-linear-to-br from-(--color-primary) to-(--color-primary)/80 rounded-3xl p-6 md:p-12 shadow-2xl relative overflow-hidden hover:shadow-3xl transition-all duration-300'
         >
           {/* Decorative circles */}
           <div className='absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full animate-pulse'></div>
@@ -152,7 +153,7 @@ const Team = () => {
               rel='noopener noreferrer'
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className='bg-white text-[var(--color-primary)] text-sm md:text-base lg:text-lg font-semibold py-3 md:py-4 px-6 md:px-10 rounded-full hover:bg-white/90 transition-all inline-flex items-center gap-2 shadow-xl hover:shadow-2xl'
+              className='bg-white text-(--color-primary) text-sm md:text-base lg:text-lg font-semibold py-3 md:py-4 px-6 md:px-10 rounded-full hover:bg-white/90 transition-all inline-flex items-center gap-2 shadow-xl hover:shadow-2xl'
             >
               <Icon icon='mdi:file-pdf-box' className='w-5 h-5 md:w-6 md:h-6' />
               View Certificate (PDF)
@@ -171,7 +172,7 @@ const Team = () => {
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.25 }}
-            className='bg-[var(--color-primary)] rounded-3xl w-full max-w-4xl max-h-[80vh] overflow-y-auto shadow-2xl'
+            className='bg-(--color-primary) rounded-3xl w-full max-w-4xl max-h-[80vh] overflow-y-auto shadow-2xl'
             onClick={(e) => e.stopPropagation()}
           >
             <div className='p-6 md:p-8'>
@@ -183,7 +184,7 @@ const Team = () => {
                   transition={{ duration: 0.35 }}
                   className='md:col-span-2 mb-6 md:mb-0 md:sticky md:top-6'
                 >
-                  <div className='relative w-full aspect-[3/4] rounded-2xl overflow-hidden bg-white/10'>
+                  <div className='relative w-full aspect-3/4 rounded-2xl overflow-hidden bg-white/10'>
                     <Image
                       src={selectedMember.imgSrc || '/images/profile-pics/default.jpg'}
                       alt={selectedMember.name}
@@ -204,15 +205,22 @@ const Team = () => {
                   <h3 className='text-2xl md:text-3xl font-bold text-white'>{selectedMember.name}</h3>
                   <p className='text-white/90 font-bold text-lg mt-1'>{selectedMember.position}</p>
 
-                  {/* Social links */}
-                  <div className='flex items-center gap-3 mt-4'>
-                    <a href='/' target='_blank' rel='noopener noreferrer' className='inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/20 text-white hover:bg-white/30 transition-colors'>
-                      <Icon icon='mdi:linkedin' className='w-5 h-5' />
-                    </a>
-                    <a href='/' target='_blank' rel='noopener noreferrer' className='inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/20 text-white hover:bg-white/30 transition-colors'>
-                      <Icon icon='mdi:twitter' className='w-5 h-5' />
-                    </a>
-                  </div>
+                  {selectedMember.socials && selectedMember.socials.length > 0 && (
+                    <div className='flex items-center gap-3 mt-4'>
+                      {selectedMember.socials.map((social) => (
+                        <a
+                          key={`${selectedMember.id}-${social.label}`}
+                          href={social.href}
+                          target='_blank'
+                          rel='noopener noreferrer'
+                          aria-label={social.label}
+                          className='inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/20 text-white hover:bg-white/30 transition-colors'
+                        >
+                          <Icon icon={social.icon} className='w-5 h-5' />
+                        </a>
+                      ))}
+                    </div>
+                  )}
 
                   <div className='space-y-4 text-white mt-4'>
                     {selectedMember.bio && selectedMember.bio.trim() ? (
