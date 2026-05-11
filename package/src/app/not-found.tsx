@@ -2,7 +2,12 @@ import Link from 'next/link'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: '404 Page | TLEF',
+  title: 'Page not found',
+  description: 'The page you requested does not exist or may have moved.',
+  robots: {
+    index: false,
+    follow: false,
+  },
 }
 
 const ErrorPage = () => {

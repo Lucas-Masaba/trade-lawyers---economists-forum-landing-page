@@ -5,6 +5,12 @@ import Header from '@/components/Layout/Header'
 import Footer from '@/components/Layout/Footer'
 import ScrollToTop from '@/components/ScrollToTop'
 import Aoscompo from '@/utils/aos'
+import { siteConfig } from '@/config/site'
+import { Analytics } from '@vercel/analytics/next'
+
+const metadataBase = new URL(siteConfig.url)
+const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION
+const bingSiteVerification = process.env.BING_SITE_VERIFICATION
 
 const playfair = Playfair_Display({ 
   subsets: ['latin'],
@@ -19,11 +25,60 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Trade Lawyers & Economists Forum',
-  description: 'Trade Lawyers & Economists Forum',
+  title: {
+    default: siteConfig.name,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  metadataBase,
+  alternates: {
+    canonical: '/',
+  },
+  applicationName: siteConfig.name,
+  authors: [{ name: siteConfig.name }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  category: 'Non-profit organization',
+  keywords: [...siteConfig.keywords],
+  formatDetection: {
+    telephone: false,
+    email: false,
+    address: false,
+    date: false,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+  },
+  openGraph: {
+    title: siteConfig.name,
+    description: siteConfig.description,
+    url: '/',
+    siteName: siteConfig.name,
+    type: 'website',
+    locale: 'en_US',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteConfig.name,
+    description: siteConfig.description,
+  },
+  verification: {
+    ...(googleSiteVerification ? { google: googleSiteVerification } : {}),
+    ...(bingSiteVerification ? { other: { 'msvalidate.01': bingSiteVerification } } : {}),
+  },
   icons: {
     icon: '/images/trade_logo.png',
+    shortcut: '/images/trade_logo.png',
   },
+  manifest: '/manifest.webmanifest',
 }
 
 export default function RootLayout({
@@ -40,6 +95,7 @@ export default function RootLayout({
           <Footer />
         </Aoscompo>
         <ScrollToTop />
+        <Analytics />
       </body>
     </html>
   )

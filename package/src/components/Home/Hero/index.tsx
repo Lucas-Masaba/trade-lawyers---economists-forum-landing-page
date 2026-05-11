@@ -69,6 +69,9 @@ const Hero = () => {
             {/* <div className='py-2 px-5 bg-primary/15 rounded-full w-fit'>
               <p className='text-primary text-lg font-bold'>{tlefHeroData.tagline}</p>
             </div> */}
+            <h1 className='text-4xl md:text-5xl lg:text-6xl font-bold text-darkmode leading-tight text-balance'>
+              {tlefHeroData.tagline}
+            </h1>
             <motion.p 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}

@@ -7,15 +7,60 @@ import Membership from '@/components/Home/Membership'
 import EventsPublications from '@/components/Home/EventsPublications'
 import Team from '@/components/Home/Team'
 import { Metadata } from 'next'
+import { siteConfig } from '@/config/site'
 
 export const metadata: Metadata = {
-  title: 'Trade Lawyers and Economists Forum - TLEF',
-  description: 'Strengthening Africa\'s capacity in trade policy, international trade law, and economic governance.',
+  title: 'Africa Trade Policy, Law & Economic Governance',
+  description: siteConfig.description,
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: 'Africa Trade Policy, Law & Economic Governance',
+    description: siteConfig.description,
+    url: '/',
+    siteName: siteConfig.name,
+    type: 'website',
+    locale: 'en_US',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Africa Trade Policy, Law & Economic Governance',
+    description: siteConfig.description,
+  },
 }
 
 export default function Home() {
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: siteConfig.name,
+    url: siteConfig.url,
+    logo: `${siteConfig.url}/images/trade_logo.png`,
+    description: siteConfig.description,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Kampala',
+      addressCountry: 'UG',
+    },
+  }
+
+  const websiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: siteConfig.name,
+    url: siteConfig.url,
+    description: siteConfig.description,
+  }
+
   return (
     <main>
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([organizationSchema, websiteSchema]).replace(/</g, '\\u003c'),
+        }}
+      />
       <Hero />
       <ImpactMission />
       <Partnership />
