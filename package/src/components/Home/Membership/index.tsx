@@ -4,10 +4,15 @@ import { Icon } from '@iconify/react/dist/iconify.js'
 import { tlefMembershipData } from '@/data/tlef-content'
 import { motion, AnimatePresence } from 'framer-motion'
 
-const Membership = () => {
+type MembershipProps = {
+  openFormOnMount?: boolean
+}
+
+const Membership = ({ openFormOnMount = false }: MembershipProps) => {
   const [showCategoriesModal, setShowCategoriesModal] = useState(false)
   const [showMembershipForm, setShowMembershipForm] = useState(false)
   const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const hasAutoOpenedMembershipForm = useRef(false)
   const categoriesToShow = 4
 
   // Form state management
@@ -52,6 +57,17 @@ const Membership = () => {
       clearCloseTimer()
     }
   }, [])
+
+  useEffect(() => {
+    if (hasAutoOpenedMembershipForm.current) {
+      return
+    }
+
+    if (openFormOnMount) {
+      hasAutoOpenedMembershipForm.current = true
+      openMembershipForm()
+    }
+  }, [openFormOnMount])
 
   // Handle form input changes
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
