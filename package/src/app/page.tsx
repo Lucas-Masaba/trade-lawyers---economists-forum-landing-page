@@ -30,8 +30,11 @@ export const metadata: Metadata = {
   },
 }
 
-export default function Home(props: any) {
-  const searchParams = props?.searchParams as Record<string, string | string[] | undefined> | undefined
+export default async function Home(props: any) {
+  // `searchParams` can be a Promise in Next.js app routes; await it before use.
+  const searchParams = (await props?.searchParams) as
+    | Record<string, string | string[] | undefined>
+    | undefined
   const joinParam = searchParams?.join
   const openMembershipForm = Array.isArray(joinParam) ? joinParam[0] === 'form' : joinParam === 'form'
 
