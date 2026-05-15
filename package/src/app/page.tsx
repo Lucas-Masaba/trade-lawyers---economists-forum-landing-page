@@ -30,12 +30,10 @@ export const metadata: Metadata = {
   },
 }
 
-export default function Home({
-  searchParams,
-}: Readonly<{
-  searchParams?: { join?: string }
-}>) {
-  const openMembershipForm = searchParams?.join === 'form'
+export default function Home(props: any) {
+  const searchParams = props?.searchParams as Record<string, string | string[] | undefined> | undefined
+  const joinParam = searchParams?.join
+  const openMembershipForm = Array.isArray(joinParam) ? joinParam[0] === 'form' : joinParam === 'form'
 
   const organizationSchema = {
     '@context': 'https://schema.org',

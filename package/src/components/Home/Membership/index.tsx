@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, useCallback } from 'react'
 import { Icon } from '@iconify/react/dist/iconify.js'
 import { tlefMembershipData } from '@/data/tlef-content'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -29,34 +29,34 @@ const Membership = ({ openFormOnMount = false }: MembershipProps) => {
   const [submitMessage, setSubmitMessage] = useState('')
   const [submitSuccess, setSubmitSuccess] = useState(false)
 
-  const clearCloseTimer = () => {
+  const clearCloseTimer = useCallback(() => {
     if (closeTimerRef.current) {
       clearTimeout(closeTimerRef.current)
       closeTimerRef.current = null
     }
-  }
+  }, [])
 
-  const resetFormState = () => {
+  const resetFormState = useCallback(() => {
     clearCloseTimer()
     setSubmitMessage('')
     setSubmitSuccess(false)
-  }
+  }, [clearCloseTimer])
 
-  const openMembershipForm = () => {
+  const openMembershipForm = useCallback(() => {
     resetFormState()
     setShowMembershipForm(true)
-  }
+  }, [resetFormState])
 
-  const closeMembershipForm = () => {
+  const closeMembershipForm = useCallback(() => {
     resetFormState()
     setShowMembershipForm(false)
-  }
+  }, [resetFormState])
 
   useEffect(() => {
     return () => {
       clearCloseTimer()
     }
-  }, [])
+  }, [clearCloseTimer])
 
   useEffect(() => {
     if (hasAutoOpenedMembershipForm.current) {
@@ -67,7 +67,7 @@ const Membership = ({ openFormOnMount = false }: MembershipProps) => {
       hasAutoOpenedMembershipForm.current = true
       openMembershipForm()
     }
-  }, [openFormOnMount])
+  }, [openFormOnMount, openMembershipForm])
 
   // Handle form input changes
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
