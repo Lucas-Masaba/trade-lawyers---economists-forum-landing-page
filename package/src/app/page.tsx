@@ -30,7 +30,13 @@ export const metadata: Metadata = {
   },
 }
 
-export default function Home() {
+export default function Home({
+  searchParams,
+}: Readonly<{
+  searchParams?: { join?: string }
+}>) {
+  const openMembershipForm = searchParams?.join === 'form'
+
   const organizationSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
@@ -65,7 +71,7 @@ export default function Home() {
       <ImpactMission />
       <Partnership />
       <Aboutus />
-      <Membership />
+      <Membership openFormOnMount={openMembershipForm} />
       <EventsPublications />
       <Team />
     </main>
