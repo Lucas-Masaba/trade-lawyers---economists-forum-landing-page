@@ -15,14 +15,67 @@ const Membership = ({ openFormOnMount = false }: MembershipProps) => {
   const hasAutoOpenedMembershipForm = useRef(false)
   const categoriesToShow = 4
 
-  // Form state management
-  const [formData, setFormData] = useState({
+  type FormData = {
+    fullName: string
+    email: string
+    country: string
+    roleTitle: string
+    organizationType: string
+    organizationName: string
+    professionalProfileLink: string
+    areaOfExpertise: string
+  }
+
+  const initialFormData: FormData = {
     fullName: '',
     email: '',
-    profession: '',
     country: '',
-    experienceLevel: 'Mid'
-  })
+    roleTitle: '',
+    organizationType: '',
+    organizationName: '',
+    professionalProfileLink: '',
+    areaOfExpertise: '',
+  }
+
+  const roleTitleOptions = [
+    'Partner / Principal',
+    'Director / Head',
+    'Senior Counsel / Senior Officer',
+    'Policy Advisor / Analyst',
+    'Economist / Researcher',
+    'Lecturer / Academic',
+    'Consultant / Practitioner',
+    'Government Official',
+    'Other',
+  ]
+
+  const organizationTypeOptions = [
+    'Government / Regulator',
+    'Regional Organization',
+    'International Organization',
+    'Law Firm',
+    'Private Company',
+    'NGO / Civil Society',
+    'Academia / Research',
+    'Independent Consultant',
+    'Other',
+  ]
+
+  const expertiseOptions = [
+    'Trade law',
+    'Trade policy',
+    'Economics',
+    'Negotiations',
+    'Research',
+    'Customs / trade facilitation',
+    'Investment',
+    'Regional integration',
+    'Capacity building',
+    'Other',
+  ]
+
+  // Form state management
+  const [formData, setFormData] = useState<FormData>(initialFormData)
 
   // Status for form submission
   const [submitting, setSubmitting] = useState(false)
@@ -86,9 +139,24 @@ const Membership = ({ openFormOnMount = false }: MembershipProps) => {
     setSubmitSuccess(false)
 
     try {
-      // Validate required fields
-      if (!formData.fullName.trim() || !formData.email.trim() || !formData.profession.trim() || !formData.country.trim()) {
-        throw new Error('All fields are required')
+      if (!formData.fullName.trim()) {
+        throw new Error('Please enter your full name')
+      }
+
+      if (!formData.email.trim()) {
+        throw new Error('Please enter your email address')
+      }
+
+      if (!formData.country.trim()) {
+        throw new Error('Please enter your country')
+      }
+
+      if (!formData.roleTitle.trim()) {
+        throw new Error('Please select your current role / title')
+      }
+
+      if (!formData.organizationType.trim()) {
+        throw new Error('Please select your organization type')
       }
 
       // Validate email format
@@ -97,12 +165,23 @@ const Membership = ({ openFormOnMount = false }: MembershipProps) => {
         throw new Error('Please enter a valid email address')
       }
 
+      if (formData.professionalProfileLink.trim()) {
+        try {
+          new URL(formData.professionalProfileLink.trim())
+        } catch {
+          throw new Error('Please enter a valid professional profile link or leave it blank')
+        }
+      }
+
       const normalizedPayload = {
         fullName: formData.fullName.trim(),
         email: formData.email.trim().toLowerCase(),
-        profession: formData.profession.trim(),
         country: formData.country.trim(),
-        experienceLevel: formData.experienceLevel,
+        roleTitle: formData.roleTitle.trim(),
+        organizationType: formData.organizationType.trim(),
+        organizationName: formData.organizationName.trim(),
+        professionalProfileLink: formData.professionalProfileLink.trim(),
+        areaOfExpertise: formData.areaOfExpertise.trim(),
       }
 
       // Submit through our server route so we can verify success reliably.
@@ -123,13 +202,7 @@ const Membership = ({ openFormOnMount = false }: MembershipProps) => {
       // Success! Reset form and show message
       setSubmitSuccess(true)
       setSubmitMessage('✓ Thank you! Your membership has been registered successfully.')
-      setFormData({
-        fullName: '',
-        email: '',
-        profession: '',
-        country: '',
-        experienceLevel: 'Mid'
-      })
+      setFormData(initialFormData)
 
       // Close form after 2 seconds
       clearCloseTimer()
@@ -456,19 +529,56 @@ const Membership = ({ openFormOnMount = false }: MembershipProps) => {
                         />
                       </div>
 
-                      {/* Profession */}
+                      {/* Role / Title */}
                       <div>
                         <label className='block text-sm font-semibold text-gray-700 mb-2'>
-                          Profession <span className='text-red-500'>*</span>
+                          Current Role / Title <span className='text-red-500'>*</span>
+                        </label>
+                        <select
+                          name='roleTitle'
+                          value={formData.roleTitle}
+                          onChange={handleInputChange}
+                          required
+                          className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-(--color-primary) focus:ring-2 focus:ring-(--color-primary)/20 transition-all'
+                        >
+                          <option value=''>Select your role / title</option>
+                          {roleTitleOptions.map(option => (
+                            <option key={option} value={option}>{option}</option>
+                          ))}
+                        </select>
+                      </div>
+
+                      {/* Organization Type */}
+                      <div>
+                        <label className='block text-sm font-semibold text-gray-700 mb-2'>
+                          Organization Type <span className='text-red-500'>*</span>
+                        </label>
+                        <select
+                          name='organizationType'
+                          value={formData.organizationType}
+                          onChange={handleInputChange}
+                          required
+                          className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-(--color-primary) focus:ring-2 focus:ring-(--color-primary)/20 transition-all'
+                        >
+                          <option value=''>Select organization type</option>
+                          {organizationTypeOptions.map(option => (
+                            <option key={option} value={option}>{option}</option>
+                          ))}
+                        </select>
+                      </div>
+
+                      {/* Organization Name */}
+                      <div>
+                        <label className='block text-sm font-semibold text-gray-700 mb-2'>
+                          Organization Name <span className='text-gray-400'>(optional)</span>
                         </label>
                         <input
                           type='text'
-                          name='profession'
-                          value={formData.profession}
+                          name='organizationName'
+                          value={formData.organizationName}
                           onChange={handleInputChange}
-                          placeholder='e.g., Trade Lawyer, Economist, Consultant'
-                          autoComplete='organization-title'
-                          required
+                          placeholder='Enter your organization name'
+                          autoComplete='organization'
                           className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-(--color-primary) focus:ring-2 focus:ring-(--color-primary)/20 transition-all'
                         />
                       </div>
@@ -490,21 +600,40 @@ const Membership = ({ openFormOnMount = false }: MembershipProps) => {
                         />
                       </div>
 
-                      {/* Experience Level */}
+                      {/* Primary Area of Expertise */}
                       <div>
                         <label className='block text-sm font-semibold text-gray-700 mb-2'>
-                          Experience Level
+                          Primary Area of Expertise <span className='text-gray-400'>(optional)</span>
                         </label>
                         <select
-                          name='experienceLevel'
-                          value={formData.experienceLevel}
+                          name='areaOfExpertise'
+                          value={formData.areaOfExpertise}
                           onChange={handleInputChange}
                           className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-(--color-primary) focus:ring-2 focus:ring-(--color-primary)/20 transition-all'
                         >
-                          <option value='Junior'>Junior (0-3 years)</option>
-                          <option value='Mid'>Mid (3-7 years)</option>
-                          <option value='Senior'>Senior (7+ years)</option>
+                          <option value=''>Select an area of expertise</option>
+                          {expertiseOptions.map(option => (
+                            <option key={option} value={option}>{option}</option>
+                          ))}
                         </select>
+                      </div>
+
+                      {/* Professional Profile Link */}
+                      <div>
+                        <label className='block text-sm font-semibold text-gray-700 mb-2'>
+                          Professional Profile Link <span className='text-gray-400'>(optional)</span>
+                        </label>
+                        <input
+                          type='url'
+                          name='professionalProfileLink'
+                          value={formData.professionalProfileLink}
+                          onChange={handleInputChange}
+                          placeholder='LinkedIn, ORCID, Google Scholar, website, or profile URL'
+                          autoComplete='url'
+                          inputMode='url'
+                          className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-(--color-primary) focus:ring-2 focus:ring-(--color-primary)/20 transition-all'
+                        />
+                        <p className='mt-2 text-xs text-gray-500'>Share any public professional profile if you have one. This is optional.</p>
                       </div>
 
                       {/* Submit Message */}

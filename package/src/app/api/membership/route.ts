@@ -3,12 +3,13 @@ import { NextResponse } from 'next/server'
 type MembershipPayload = {
   fullName: string
   email: string
-  profession: string
   country: string
-  experienceLevel: string
+  roleTitle: string
+  organizationType: string
+  organizationName: string
+  professionalProfileLink: string
+  areaOfExpertise: string
 }
-
-const isNonEmptyString = (value: unknown) => typeof value === 'string' && value.trim().length > 0
 
 const isEmailValid = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
 
@@ -35,18 +36,31 @@ export async function POST(request: Request) {
 
   const fullName = typeof body.fullName === 'string' ? body.fullName.trim() : ''
   const email = typeof body.email === 'string' ? body.email.trim().toLowerCase() : ''
-  const profession = typeof body.profession === 'string' ? body.profession.trim() : ''
   const country = typeof body.country === 'string' ? body.country.trim() : ''
-  const experienceLevel = typeof body.experienceLevel === 'string' ? body.experienceLevel.trim() : ''
+  const roleTitle = typeof body.roleTitle === 'string' ? body.roleTitle.trim() : ''
+  const organizationType = typeof body.organizationType === 'string' ? body.organizationType.trim() : ''
+  const organizationName = typeof body.organizationName === 'string' ? body.organizationName.trim() : ''
+  const professionalProfileLink = typeof body.professionalProfileLink === 'string' ? body.professionalProfileLink.trim() : ''
+  const areaOfExpertise = typeof body.areaOfExpertise === 'string' ? body.areaOfExpertise.trim() : ''
 
-  if (!fullName || !email || !profession || !country || !experienceLevel) {
-    return NextResponse.json(
-      {
-        success: false,
-        message: 'All fields are required.',
-      },
-      { status: 400 }
-    )
+  if (!fullName) {
+    return NextResponse.json({ success: false, message: 'Please enter your full name.' }, { status: 400 })
+  }
+
+  if (!email) {
+    return NextResponse.json({ success: false, message: 'Please enter your email address.' }, { status: 400 })
+  }
+
+  if (!country) {
+    return NextResponse.json({ success: false, message: 'Please enter your country.' }, { status: 400 })
+  }
+
+  if (!roleTitle) {
+    return NextResponse.json({ success: false, message: 'Please select your current role / title.' }, { status: 400 })
+  }
+
+  if (!organizationType) {
+    return NextResponse.json({ success: false, message: 'Please select your organization type.' }, { status: 400 })
   }
 
   if (!isEmailValid(email)) {
@@ -62,18 +76,29 @@ export async function POST(request: Request) {
   const payload: MembershipPayload = {
     fullName,
     email,
-    profession,
     country,
-    experienceLevel,
+    roleTitle,
+    organizationType,
+    organizationName,
+    professionalProfileLink,
+    areaOfExpertise,
   }
 
   try {
+    // Send both the new schema and legacy fields to the Apps Script for compatibility.
+    const upstreamBody = {
+      ...payload,
+      // Legacy keys some upstream scripts still expect
+      profession: roleTitle,
+      experienceLevel: '',
+    }
+
     const upstreamResponse = await fetch(scriptUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(payload),
+      body: JSON.stringify(upstreamBody),
       cache: 'no-store',
     })
 
