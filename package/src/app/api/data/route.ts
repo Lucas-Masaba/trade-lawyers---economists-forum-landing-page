@@ -26,7 +26,8 @@ const FooterLinksData: footerlinks[] = [
     section: 'Connect',
     links: [
       { label: 'Events & Publications', href: '#EventsPublications' },
-      { label: 'Contact Us', href: '#first-section' },
+      { label: 'partners@handeladvocates.com', href: 'mailto:partners@handeladvocates.com' },
+      { label: '+256 763 480 363', href: 'tel:+256763480363' },
     ],
   },
 ]

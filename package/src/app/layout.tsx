@@ -41,8 +41,8 @@ export const metadata: Metadata = {
   category: 'Non-profit organization',
   keywords: [...siteConfig.keywords],
   formatDetection: {
-    telephone: false,
-    email: false,
+    telephone: true,
+    email: true,
     address: false,
     date: false,
   },
